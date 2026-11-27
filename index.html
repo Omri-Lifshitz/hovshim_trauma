@@ -444,7 +444,7 @@ function setMode(on,reset){exam=on;document.body.classList.toggle('exam',exam);d
  document.getElementById('fin').hidden=!exam;if(reset)resetAll()}
 document.getElementById('mode').onclick=()=>{setMode(!exam,false);counted={};qs.forEach(q=>{q.querySelectorAll('.opt').forEach(x=>x.classList.remove('ok','bad'));q.querySelector('.res').innerHTML='';q.querySelector('details').open=false});upd()};
 function resetAll(){counted={};qs.forEach(q=>{q.querySelectorAll('input').forEach(i=>i.checked=false);q.querySelectorAll('.opt').forEach(x=>x.classList.remove('ok','bad'));q.querySelector('.res').innerHTML='';q.querySelector('details').open=false});upd()}
-document.getElementById('reset').onclick=resetAll;
+document.getElementById('reset').onclick=()=>{if(confirm('איפוס ימחק את כל התשובות שסימנת, את הבדיקות ואת הציון בכל השאלות.\nלא ניתן לבטל את הפעולה.\n\nלהמשיך?'))resetAll()};
 document.getElementById('fin').onclick=()=>{let ok=0,n=0;qs.forEach(q=>{const v=grade(q,true);if(v!==null){n++;if(v)ok++}});
  document.getElementById('score').textContent=`ציון: ${ok}/${tot} (${Math.round(100*ok/tot)}%) · נענו ${n}`;document.body.classList.remove('exam');scrollTo(0,0)};
 try{const st=JSON.parse(localStorage.getItem(KEY)||'null');if(st){
